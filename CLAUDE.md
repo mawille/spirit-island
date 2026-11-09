@@ -46,6 +46,14 @@ python -I tools/build.py <cache-ordner> .
 - Die GitHub-API ohne Login hat nur 60 Anfragen/Stunde – Pages-Status lieber im Actions-Tab im Browser ansehen
   oder die Live-Seite direkt abfragen.
 
+## Offen auf `gh-pages`: Pages-Build fehlgeschlagen
+
+Der Pages-Build #2 für Commit `47fd9fb` („Menüs nur noch auf gespiegelte Seiten verlinken“) ist mit `failure`
+geendet; live ist deshalb noch der Stand von `15b2d13` (alte Wiki-Menüs). Ursache noch nicht angesehen.
+Im Actions-Tab (eingeloggt) Log ansehen und „Re-run jobs“ versuchen – bei großen Seiten (~170 MB) sind
+Abbrüche beim Deploy oft vorübergehend. Ein Merge von `feature/mobile-ansicht` in `gh-pages` stößt ebenfalls
+einen neuen Build an.
+
 ## Aktueller Stand: Handy-Ansicht, Variante 1 (Branch `feature/mobile-ansicht`)
 
 Vereinbart war „Variante 1 – grundtauglich“: Seite auf dem Handy lesbar, breite Blöcke (Growth, Presence,
