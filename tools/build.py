@@ -257,7 +257,8 @@ def build(title, h):
     h = h.replace("</body>", '<script src="js/offline.js"></script>\n</body>', 1)
     h = re.sub(r'<span class="ht-editsection"[^>]*>.*?</span>', "", h, flags=re.S)
     h = re.sub(r'<span class="mw-editsection">.*?</span></span>', "", h, flags=re.S)
-    h = re.sub(r'<div id="p-search".*?</form>\s*</div>\s*</div>', "", h, flags=re.S)
+    # Nur das eine </div> von p-search mit entfernen; das nächste schließt #right-navigation
+    h = re.sub(r'<div id="p-search".*?</form>\s*</div>', "", h, flags=re.S)
     h = fix_file_links(h)
     h = re.sub(r"<img [^>]*>", fix_img, h)
     h = re.sub(r'\b(href|src)=(["\'])(.*?)\2', attr_sub, h)
