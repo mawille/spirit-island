@@ -66,4 +66,23 @@
             });
         });
     });
+
+    // Mobiles Menü: Button blendet die Seitenleiste ein, Klick daneben oder auf einen Link schließt sie
+    var toggle = document.getElementById('offline-menu-toggle');
+    if (toggle) {
+        var setOpen = function (open) {
+            document.body.classList.toggle('offline-menu-open', open);
+            toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+        };
+        toggle.addEventListener('click', function (e) {
+            e.stopPropagation();
+            setOpen(!document.body.classList.contains('offline-menu-open'));
+        });
+        document.addEventListener('click', function (e) {
+            if (!document.body.classList.contains('offline-menu-open')) { return; }
+            var panel = document.getElementById('mw-panel');
+            if (!panel.contains(e.target) || e.target.closest('a')) { setOpen(false); }
+        });
+        document.addEventListener('keydown', function (e) { if (e.key === 'Escape') { setOpen(false); } });
+    }
 })();

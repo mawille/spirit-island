@@ -11,3 +11,43 @@
 #p-offline-spirits ul { list-style: none; margin: 0; padding: 0; }
 #p-offline-spirits li { line-height: 1.3; padding: 0.15em 0; font-size: 0.85em; }
 #offline-hinweis { background: #fef6e7; border: 1px solid #fc3; padding: 6px 10px; margin-bottom: 10px; font-size: 0.85em; }
+
+/* ---------- Mobile Ansicht ---------- */
+#offline-menu-toggle { display: none; }
+@media screen and (max-width: 800px) {
+    #mw-page-base, #mw-head-base, #mw-head { display: none; }
+    .mw-body, .mw-footer, #footer { margin-left: 0 !important; }
+    .mw-body { padding: 0.75em 0.6em; border-left: 0; }
+    .mw-body h1.firstHeading { font-size: 1.5em; margin-top: 0.2em; }
+
+    /* Seitenleiste als ausklappbares Menü */
+    #offline-menu-toggle { display: inline-block; position: sticky; top: 0; z-index: 50; margin-bottom: 8px;
+        padding: 8px 14px; font-size: 1em; background: #36c; color: #fff; border: 0; border-radius: 4px; }
+    #mw-panel { display: none; }
+    body.offline-menu-open #mw-panel { display: block; position: fixed; top: 0; left: 0; bottom: 0; z-index: 100;
+        width: 80%; max-width: 300px; overflow-y: auto; background: #f6f6f6; box-shadow: 2px 0 12px rgba(0,0,0,.35);
+        padding: 0 0.5em 2em; }
+    body.offline-menu-open #p-logo { height: 100px; background-size: contain; }
+    body.offline-menu-open #p-logo a { height: 100px; background-size: contain; background-position: center; }
+    body.offline-menu-open #p-offline-spirits li { font-size: 1em; padding: 0.35em 0; }
+    body.offline-menu-open::after { content: ""; position: fixed; inset: 0; background: rgba(0,0,0,.3); z-index: 90; }
+
+    /* Inhalt auf Bildschirmbreite, breite Blöcke seitlich scrollbar */
+    .mw-body img, .mw-body iframe { max-width: 100%; }
+    .mw-body a.image img { height: auto; }
+    /* fieldset ist per Browser-Standard mindestens so breit wie sein Inhalt und sprengt sonst die Seite */
+    .oo-ui-fieldsetLayout, .oo-ui-fieldsetLayout-group, .oo-ui-panelLayout, .oo-ui-menuLayout-content { min-width: 0; max-width: 100%; }
+    html, body { overflow-x: clip; }
+    /* #spirit-Präfix nötig: die Wiki-Regeln (#spirit .growthblock usw.) schlagen sonst per ID */
+    #spirit .topblock, #spirit .rightblock, #spirit .growthblock, .topblock, .rightblock, .growthblock { display: block; width: auto; min-width: 0; max-width: 100%;
+        margin: 8px 0; overflow-x: auto; -webkit-overflow-scrolling: touch; }
+    #spirit .rightblock .innate, #spirit .powerblock { min-width: 0; max-width: 100%; margin: 8px 0; }
+    .mw-parser-output table.wikitable { display: block; overflow-x: auto; max-width: 100%; }
+    .mw-parser-output > center { overflow-x: auto; }
+
+    /* Reiter als wischbare Leiste */
+    .oo-ui-tabSelectWidget { flex-wrap: nowrap; overflow-x: auto; -webkit-overflow-scrolling: touch; }
+    .oo-ui-tabOptionWidget { white-space: nowrap; flex: 0 0 auto; }
+    .oo-ui-tabPanelLayout { padding: 6px; overflow-x: auto; }
+    #offline-hinweis { font-size: 0.75em; }
+}

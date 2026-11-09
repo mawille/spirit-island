@@ -244,6 +244,10 @@ BANNER = (
     'Spirit Island, Karten und Artwork © Greater Than Games, LLC. Kein offizielles Angebot.</div>')
 
 
+# Nur in der mobilen Ansicht sichtbar (offline.css), öffnet die Seitenleiste (offline.js)
+MENU_BUTTON = '<button id="offline-menu-toggle" type="button" aria-controls="mw-panel" aria-expanded="false">☰ Spirits</button>'
+
+
 def build(title, h):
     h = re.sub(r"<script\b.*?</script>", "", h, flags=re.S)
     h = re.sub(r'<link rel="stylesheet" href="([^"]+)"\s*/?>',
@@ -270,7 +274,10 @@ def build(title, h):
                '<div class="vector-menu-content"><ul class="vector-menu-content-list">'
                f'<li><a href="index.html"><b>List of Spirits</b></a></li>{nav_items}</ul></div></nav>',
                h, count=1, flags=re.S)
-    h = h.replace('<a id="top"></a>', '<a id="top"></a>' + BANNER, 1)
+    h = h.replace('<a id="top"></a>', '<a id="top"></a>' + MENU_BUTTON + BANNER, 1)
+    # Ohne Viewport-Tag zeigen Handys die Seite als verkleinerten Desktop
+    h = h.replace('<meta charset="UTF-8"/>',
+                  '<meta charset="UTF-8"/>\n<meta name="viewport" content="width=device-width, initial-scale=1"/>', 1)
     return h
 
 
