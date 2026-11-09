@@ -1,0 +1,13 @@
+/* Offline-Ergänzungen: Reiterleiste (ersetzt OOUI-Styles), Seitenleiste */
+.oo-ui-tabSelectWidget { display: flex; flex-wrap: wrap; gap: 2px; border-bottom: 1px solid #a2a9b1; margin-bottom: 0; }
+.oo-ui-tabOptionWidget { padding: 6px 12px; background: #eaecf0; border: 1px solid #c8ccd1; border-bottom: none;
+    border-radius: 2px 2px 0 0; color: #0645ad; user-select: none; }
+.oo-ui-tabOptionWidget:hover { background: #f8f9fa; }
+.oo-ui-tabOptionWidget.oo-ui-optionWidget-selected { background: #fff; color: #202122; font-weight: bold;
+    position: relative; top: 1px; border-color: #a2a9b1; }
+.oo-ui-tabPanelLayout { border: 1px solid #a2a9b1; border-top: none; padding: 12px; background: #fff; }
+.oo-ui-fieldsetLayout { border: 0; margin: 0; padding: 0; }
+.oo-ui-fieldsetLayout-header { display: none; }
+#p-offline-spirits ul { list-style: none; margin: 0; padding: 0; }
+#p-offline-spirits li { line-height: 1.3; padding: 0.15em 0; font-size: 0.85em; }
+#offline-hinweis { background: #fef6e7; border: 1px solid #fc3; padding: 6px 10px; margin-bottom: 10px; font-size: 0.85em; }
