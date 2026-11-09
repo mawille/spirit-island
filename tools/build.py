@@ -259,13 +259,17 @@ def build(title, h):
     h = re.sub(r'\b(href|src)=(["\'])(.*?)\2', attr_sub, h)
     h = re.sub(r"url\(['\"]?(/[^'\")]+)['\"]?\)",
                lambda m: f"url('{rewrite_url(m.group(1))}')", h)
-    # Sidebar: Liste aller Spirits ergänzen
-    h = h.replace('<nav id="p-navigation"',
-                  '<nav id="p-offline-spirits" class="mw-portlet vector-menu vector-menu-portal portal">'
-                  '<h3 class="vector-menu-heading"><span>Spirits (offline)</span></h3>'
-                  '<div class="vector-menu-content"><ul class="vector-menu-content-list">'
-                  f'<li><a href="index.html"><b>List of Spirits</b></a></li>{nav_items}</ul></div></nav>'
-                  '<nav id="p-navigation"', 1)
+    # Menüs: nur noch selbst gehostete Seiten. Wiki-Menüs (Seitenleiste, Reiter oben, Login) entfernen,
+    # weil sie auf nicht gespiegelte Wiki-Seiten im Archiv zeigen.
+    h = re.sub(r'<nav id="p-(?:personal|namespaces|variants|views|cactions|Spirit_Island|Wiki_Guidelines|navigation|tb)"'
+               r'.*?</nav>', "", h, flags=re.S)
+    h = re.sub(r'(<a class="mw-wiki-logo" href=")[^"]*"', r'\1index.html"', h, count=1)
+    h = re.sub(r'(<div id="p-logo"[^>]*>.*?</div>)',
+               lambda m: m.group(1) + '<nav id="p-offline-spirits" class="mw-portlet vector-menu vector-menu-portal portal">'
+               '<h3 class="vector-menu-heading"><span>Spirits</span></h3>'
+               '<div class="vector-menu-content"><ul class="vector-menu-content-list">'
+               f'<li><a href="index.html"><b>List of Spirits</b></a></li>{nav_items}</ul></div></nav>',
+               h, count=1, flags=re.S)
     h = h.replace('<a id="top"></a>', '<a id="top"></a>' + BANNER, 1)
     return h
 
